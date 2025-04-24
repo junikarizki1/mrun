@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FormMelawiRun</string>
+
+    <string-array name="distance_options">
+        <item>5K</item>
+        <item>10K</item>
+        <item>21K</item>
+    </string-array>
+</resources>
