@@ -1,0 +1,4 @@
+activity_main.xml (app/res/layout)
+strings.java (app/res/values)
+MainActivity.java (app/java/com.)
+DatabaseHelper.java (app/java/com.)
