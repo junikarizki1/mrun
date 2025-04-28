@@ -78,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Fungsi untuk menampilkan data peserta dalam AlertDialog
     private void showRegistrantsDialog() {
-        Cursor res = dbHelper.getAllData();
+//        Cursor res = dbHelper.getAllData();
+        Cursor res = dbHelper.getNamaDanJarak();
         if (res.getCount() == 0) {
             Toast.makeText(MainActivity.this, "Belum ada peserta terdaftar.", Toast.LENGTH_SHORT).show();
             return;
@@ -87,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder buffer = new StringBuilder();
         while (res.moveToNext()) {
             buffer.append("Nama          : ").append(res.getString(res.getColumnIndexOrThrow("nama"))).append("\n");
-            buffer.append("Jenis Kelamin : ").append(res.getString(res.getColumnIndexOrThrow("jenis_kelamin"))).append("\n");
-            buffer.append("Email         : ").append(res.getString(res.getColumnIndexOrThrow("email"))).append("\n");
-            buffer.append("No HP         : ").append(res.getString(res.getColumnIndexOrThrow("no_hp"))).append("\n");
+//            buffer.append("Jenis Kelamin : ").append(res.getString(res.getColumnIndexOrThrow("jenis_kelamin"))).append("\n");
+//            buffer.append("Email         : ").append(res.getString(res.getColumnIndexOrThrow("email"))).append("\n");
+//            buffer.append("No HP         : ").append(res.getString(res.getColumnIndexOrThrow("no_hp"))).append("\n");
             buffer.append("Jarak Lari    : ").append(res.getString(res.getColumnIndexOrThrow("jarak_lari"))).append("\n\n");
         }
 
