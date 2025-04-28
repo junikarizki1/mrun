@@ -53,17 +53,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, contentValues);
         return result != -1; // true jika berhasil
     }
-    //FUngsi ambil beberapa data(cek mainactivity)
-    public Cursor getNamaDanJarak() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT nama, jarak_lari FROM " + TABLE_NAME, null);
-    }
 
     // Fungsi ambil semua data
-//    public Cursor getAllData() {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-//    }
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+    }
 
+    // Fungsi Edit
+    public boolean updateDataByNama(String nama, String email, String noHp, String jarakLari) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("email", email);
+        contentValues.put("no_hp", noHp);
+        contentValues.put("jarak_lari", jarakLari);
+
+        // update berdasarkan nama
+        int result = db.update(TABLE_NAME, contentValues, "nama = ?", new String[]{nama});
+        return result > 0; // kalau result > 0 artinya sukses update
+    }
+
+
+    // Fungsi Hapus
+    public boolean deleteDataByNama(String nama) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_NAME, "nama = ?", new String[]{nama});
+        return result > 0;
+    }
 
 }
