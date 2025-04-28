@@ -85,45 +85,47 @@
             android:entries="@array/distance_options"
             android:backgroundTint="#D32F2F" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Simpan"
-            android:backgroundTint="#B71C1C"
-            android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="20dp"/>
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:backgroundTint="#B71C1C"
-            android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="20dp"/>
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hapus"
-            android:backgroundTint="#B71C1C"
-            android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Simpan"
+                android:backgroundTint="#B71C1C"
+                android:textColor="#FFFFFF"
+                android:padding="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"/>
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:backgroundTint="#B71C1C"
+                android:textColor="#FFFFFF"
+                android:padding="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp" />
+            <Button
+                android:id="@+id/btnDeleteNama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hapus"
+                android:backgroundTint="#B71C1C"
+                android:textColor="#FFFFFF"
+                android:padding="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp" />
+
+        </LinearLayout>
 
 
-    <TextView
+        <TextView
             android:id="@+id/tvViewRegistrants"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
