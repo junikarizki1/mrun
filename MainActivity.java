@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         tvViewRegistrants = findViewById(R.id.tvViewRegistrants);
         dbHelper = new DatabaseHelper(this);
 
+        // Fungsi Simpan
         btnSubmit.setOnClickListener(v -> {
             String name = etName.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
@@ -74,12 +75,105 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Fungsi Edit
+        Button btnEdit = findViewById(R.id.btnEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Buat AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Edit Data Peserta");
+
+                // Buat layout vertical manual
+                LinearLayout layout = new LinearLayout(MainActivity.this);
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.setPadding(16, 16, 16, 16);
+
+                // Input Nama untuk mencari
+                final EditText inputNama = new EditText(MainActivity.this);
+                inputNama.setHint("Nama (yang ingin diedit)");
+                layout.addView(inputNama);
+
+                // Input Email baru
+                final EditText inputEmail = new EditText(MainActivity.this);
+                inputEmail.setHint("Email Baru");
+                layout.addView(inputEmail);
+
+                // Input No HP baru
+                final EditText inputNoHp = new EditText(MainActivity.this);
+                inputNoHp.setHint("Nomor HP Baru");
+                layout.addView(inputNoHp);
+
+                // Input Jarak Lari baru
+                final EditText inputJarak = new EditText(MainActivity.this);
+                inputJarak.setHint("Jarak Lari Baru");
+                layout.addView(inputJarak);
+
+                builder.setView(layout);
+
+                builder.setPositiveButton("Simpan", (dialog, which) -> {
+                    String nama = inputNama.getText().toString().trim();
+                    String email = inputEmail.getText().toString().trim();
+                    String noHp = inputNoHp.getText().toString().trim();
+                    String jarak = inputJarak.getText().toString().trim();
+
+                    if (!nama.isEmpty() && !email.isEmpty() && !noHp.isEmpty() && !jarak.isEmpty()) {
+                        boolean updated = dbHelper.updateDataByNama(nama, email, noHp, jarak);
+                        if (updated) {
+                            Toast.makeText(MainActivity.this, "Data berhasil diubah", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Data gagal diubah (nama tidak ditemukan)", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, "Semua field harus diisi", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton("Batal", null);
+
+                builder.show();
+            }
+        });
+
+        // Fungsi Hapus
+        Button btnDeleteNama = findViewById(R.id.btnDeleteNama);
+        btnDeleteNama.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Bikin Alert Dialog input nama
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Hapus Data Peserta");
+
+                final EditText input = new EditText(MainActivity.this);
+                input.setHint("Masukkan Nama Peserta");
+                builder.setView(input);
+
+                builder.setPositiveButton("Hapus", (dialog, which) -> {
+                    String nama = input.getText().toString().trim();
+                    if (!nama.isEmpty()) {
+                        boolean deleted = dbHelper.deleteDataByNama(nama);
+                        if (deleted) {
+                            Toast.makeText(MainActivity.this, "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, "Nama tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton("Batal", null);
+                builder.show();
+            }
+        });
+
     }
+
 
     // Fungsi untuk menampilkan data peserta dalam AlertDialog
     private void showRegistrantsDialog() {
-//        Cursor res = dbHelper.getAllData();
-        Cursor res = dbHelper.getNamaDanJarak();
+        Cursor res = dbHelper.getAllData();
         if (res.getCount() == 0) {
             Toast.makeText(MainActivity.this, "Belum ada peserta terdaftar.", Toast.LENGTH_SHORT).show();
             return;
@@ -88,9 +182,9 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder buffer = new StringBuilder();
         while (res.moveToNext()) {
             buffer.append("Nama          : ").append(res.getString(res.getColumnIndexOrThrow("nama"))).append("\n");
-//            buffer.append("Jenis Kelamin : ").append(res.getString(res.getColumnIndexOrThrow("jenis_kelamin"))).append("\n");
-//            buffer.append("Email         : ").append(res.getString(res.getColumnIndexOrThrow("email"))).append("\n");
-//            buffer.append("No HP         : ").append(res.getString(res.getColumnIndexOrThrow("no_hp"))).append("\n");
+            buffer.append("Jenis Kelamin : ").append(res.getString(res.getColumnIndexOrThrow("jenis_kelamin"))).append("\n");
+            buffer.append("Email         : ").append(res.getString(res.getColumnIndexOrThrow("email"))).append("\n");
+            buffer.append("No HP         : ").append(res.getString(res.getColumnIndexOrThrow("no_hp"))).append("\n");
             buffer.append("Jarak Lari    : ").append(res.getString(res.getColumnIndexOrThrow("jarak_lari"))).append("\n\n");
         }
 
@@ -100,4 +194,5 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(buffer.toString());
         builder.show();
     }
+
 }
