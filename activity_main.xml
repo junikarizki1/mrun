@@ -40,14 +40,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginBottom="12dp">
-
             <RadioButton
                 android:id="@+id/rbMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Laki-laki"
                 android:textColor="#B71C1C" />
-
             <RadioButton
                 android:id="@+id/rbFemale"
                 android:layout_width="wrap_content"
@@ -121,9 +119,7 @@
                 android:padding="12dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="20dp" />
-
         </LinearLayout>
-
 
         <TextView
             android:id="@+id/tvViewRegistrants"
