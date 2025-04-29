@@ -2,10 +2,10 @@ package com.example.formmelawirun;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.*;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -167,9 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.show();
             }
         });
-
     }
-
 
     // Fungsi untuk menampilkan data peserta dalam AlertDialog
     private void showRegistrantsDialog() {
@@ -194,5 +192,4 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(buffer.toString());
         builder.show();
     }
-
 }
